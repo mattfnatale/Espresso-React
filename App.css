@@ -1,0 +1,62 @@
+body {
+  background-color: #eff3f8;
+}
+a {
+  color: #343a40;
+  text-decoration: none;
+}
+a:hover {
+  color: darkgrey;
+}
+.title {
+  color: #343a40;
+  min-width: 34rem;
+}
+.App {
+  text-align: center;
+  padding: 2rem 4rem;
+}
+.content {
+  background: white;
+  padding: 2rem;
+  border-radius: 6px;
+  margin: auto;
+  max-width: 47rem;
+  min-width: 30rem;
+}
+.dataTable {
+  width: 100%;
+  background-color: white;
+  text-align: left;
+  border-collapse: collapse;
+}
+.headerCell {
+  padding: 1rem 1rem;
+  border: 1px solid #dee2e6;
+  border-width: 0 0 1px 0;
+  font-weight: 700;
+  color: #343a40;
+  background: #f8f9fa;
+}
+.dataCell {
+  padding: 1rem 1rem;
+  border: 1px solid #dee2e6;
+  border-width: 0 0 1px 0;
+  color: #495057;
+}
+.dataRow:hover {
+  background: #f8f9fa;
+}
+.footer {
+  text-align: right;
+  color: #495057;
+  margin: auto;
+  max-width: 50rem;
+  min-width: 34rem;
+}
+#source-text {
+  float: left;
+}
+#signature-text {
+  float: right;
+}
