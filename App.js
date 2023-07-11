@@ -1,6 +1,8 @@
 import './App.css';
 
-const PAGE_TITLE = "Espresso Data Table";
+const PAGE_TITLE = "Espresso";
+
+const PAGE_SUB_TITLE = "SPA Demo";
 
 const HEADER_DATA = [
   "Name",
@@ -60,16 +62,19 @@ function DataTable() {
 function App() {
   return (
     <div className="App">
-      <h1 className="title">{PAGE_TITLE}</h1>
+      <div className="title">
+        <h1 id="page-title">{PAGE_TITLE}</h1>
+        <h4 id="page-sub-title">{PAGE_SUB_TITLE}</h4>
+      </div>
       <div className="content">
         <DataTable />
       </div>
       <div className="footer">
         <div id="signature-text">
-          <h4>- matt 🙂</h4>
+          <h4>- Matt 🙂</h4>
         </div>
         <div id="source-text">
-          <h4><a target="_blank" href="https://github.com/mattfnatale/Espresso-React">source</a></h4>
+          <h4><a target="_blank" href="https://github.com/mattfnatale/Espresso-React">Source</a></h4>
         </div>
       </div>
     </div>

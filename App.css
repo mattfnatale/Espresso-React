@@ -12,6 +12,12 @@ a:hover {
   color: #343a40;
   min-width: 34rem;
 }
+#page-title {
+  margin-bottom: 0.5rem;
+}
+#page-sub-title {
+  margin-top: 0.5rem;
+}
 .App {
   text-align: center;
   padding: 2rem 4rem;
