@@ -1,4 +1,5 @@
 import './App.css';
+import {useEffect, useState} from 'react';
 
 const PAGE_TITLE = "Espresso";
 
@@ -20,41 +21,49 @@ const TABLE_DATA = [
   {name: "Unplugged Decaf",   blend: "Dark",    acidity: "Medium",      flavorProfile: "Semi Sweet Chocolate, Dried Plum"}
 ];
 
-function DataTable({data}) {
-  let renderedBody = data.map(
-    function(row, index) {
-      return (<TableRow key={"row-" + index} row={row} index={index} />)
+function DataTable({data, action}) {
+  function TableHeader() {
+    let renderedHeader = HEADER_DATA.map((header, index) => {
+        return (<th key={"header-" + header.value} className="headerCell">{header.title}</th>);
+    });
+    
+    return (<tr key="header">{renderedHeader}</tr>);
+  }
+  
+  function TableRow({row}, {index}) {
+    let renderedRow = HEADER_DATA.map((header, index) => {
+        return (<td key={"row-" + index + "-" + header.value} className="dataCell">{row[header.value]}</td>);
+      }
+    );
+    
+    return (<tr onClick={() => action(row)} key={"row-" + index} className="dataRow">{renderedRow}</tr>);
+  }
+  
+  function isEmpty() {
+    if (data.length === 0) {
+      return (<p className="emptyMessage">Empty</p>);
+    } else {
+      return null;
+    }
+  }
+  
+  let renderedBody = data.map((row, index) => {
+    return (<TableRow key={"row-" + index} row={row} index={index} />)
   });
   
   return (
-    <table className="dataTable">
-      <thead>
-        <TableHeader />
-      </thead>
-      <tbody>
-        {renderedBody}
-      </tbody>
-    </table>
+    <div>
+      <table className="dataTable">
+        <thead>
+          <TableHeader />
+        </thead>
+        <tbody>
+          {renderedBody}
+        </tbody>
+      </table>
+      <p>{isEmpty()}</p>
+    </div>
   );
-}
-
-function TableHeader() {
-  let renderedHeader = HEADER_DATA.map(
-    function(header, index) {
-      return (<th key={"header-" + header.value} className="headerCell">{header.title}</th>);
-  });
-  
-  return (<tr key="header">{renderedHeader}</tr>);
-}
-
-function TableRow({row}, {index}) {
-  let renderedRow = HEADER_DATA.map(
-    function(header, index) {
-      return (<td key={"row-" + index + "-" + header.value} className="dataCell">{row[header.value]}</td>);
-    }
-  );
-  
-  return (<tr key={"row-" + index} className="dataRow">{renderedRow}</tr>);
 }
 
 function Title() {
@@ -80,11 +89,33 @@ function Footer() {
 }
 
 function App() {
+  const [tableDataTop, setTableDataTop] = useState([]);
+  const [tableDataBot, setTableDataBot] = useState([]);
+  
+  useEffect(() => {
+    setTableDataTop(TABLE_DATA);
+    setTableDataBot([]);
+  }, []);
+  
+  function moveDown(value) {
+    setTableDataTop(tableDataTop.filter(item => item.name !== value.name));
+    setTableDataBot((array) => [...array, value]);
+  }
+  
+  function moveUp(value) {
+    setTableDataBot(tableDataBot.filter(item => item.name !== value.name));
+    setTableDataTop((array) => [...array, value]);
+  }
+  
   return (
     <div className="App">
       <Title />
       <div className="content">
-        <DataTable data={TABLE_DATA} />
+        <DataTable data={tableDataTop} action={moveDown} />
+      </div>
+      <br />
+      <div className="content">
+        <DataTable data={tableDataBot} action={moveUp} />
       </div>
       <Footer />
     </div>

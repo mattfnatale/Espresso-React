@@ -1,13 +1,6 @@
 body {
   background-color: #eff3f8;
 }
-a {
-  color: #343a40;
-  text-decoration: none;
-}
-a:hover {
-  color: darkgrey;
-}
 .title {
   color: #343a40;
   min-width: 34rem;
@@ -53,12 +46,24 @@ a:hover {
 .dataRow:hover {
   background: #f8f9fa;
 }
+.emptyMessage {
+  text-align: center;
+  color: #495057;
+  width: 100%;
+}
 .footer {
   text-align: right;
   color: #495057;
   margin: auto;
   max-width: 50rem;
   min-width: 34rem;
+}
+a {
+  color: #343a40;
+  text-decoration: none;
+}
+a:hover {
+  color: darkgrey;
 }
 #source-text {
   float: left;
